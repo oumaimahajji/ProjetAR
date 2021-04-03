@@ -1,0 +1,69 @@
+package httpserver.itf.impl;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import httpserver.itf.HttpResponse;
+import httpserver.itf.HttpRicmlet;
+import httpserver.itf.HttpRicmletRequest;
+import httpserver.itf.HttpRicmletResponse;
+import httpserver.itf.HttpSession;
+
+public class HttpRicmletRequestImpl extends HttpRicmletRequest{
+
+	public HttpRicmletRequestImpl(HttpServer hs, String method, String ressname, BufferedReader br) throws IOException {
+		super(hs, method, ressname, br);
+	}
+
+	@Override
+	public HttpSession getSession() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getArg(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getCookie(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void process(HttpResponse resp) throws Exception {
+		/*if (!m_method.equals("GET")) {	//we only handle GET
+			System.out.println("This is not a GET method");
+		} else {	//for functionning requests
+			String m_class;
+			try {
+				HttpRicmlet instance = m_hs.getInstance(className);
+				instance.doGet(this, (HttpRicmletResponse) resp);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				resp.setReplyError(404, "Ricmlet not found");
+			}
+		}*/
+		if (m_method.compareTo("GET") == 0) {
+			String className;
+			if (m_ressname.indexOf("?") < 0) {
+				className = (m_ressname.substring(10)).replace("/", "."); // 10 = length("/ricmlets/")
+			} else {
+				className = (m_ressname.substring(10, m_ressname.indexOf("?"))).replace("/", "."); // 10 = length("/ricmlets/")
+				String args[] = (m_ressname.substring(m_ressname.indexOf("?") + 1)).split("&");
+				for (int i = 0; i < args.length; i++) {
+					String arg[] = args[i].split("=");
+				}
+			} try {
+				HttpRicmlet instance = m_hs.getInstance(className);
+				instance.doGet(this, (HttpRicmletResponse) resp);
+
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				resp.setReplyError(404, "Ricmlet not found");
+			}
+		}
+	}
+}

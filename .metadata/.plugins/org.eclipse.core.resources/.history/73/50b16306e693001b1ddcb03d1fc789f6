@@ -1,0 +1,14 @@
+package httpserver.itf.impl;
+
+import java.io.PrintStream;
+
+import httpserver.itf.HttpRequest;
+
+public class HttpRicmletResponseImpl extends HttpResponseImpl{
+
+	protected HttpRicmletResponseImpl(HttpServer hs, HttpRequest req, PrintStream ps) {
+		super(hs, req, ps);
+		// TODO Auto-generated constructor stub
+	}
+
+}

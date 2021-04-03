@@ -1,0 +1,5 @@
+package httpserver.itf.impl;
+
+public class HttpRicmletResponseImpl {
+
+}

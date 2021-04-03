@@ -1,0 +1,54 @@
+package httpserver.itf.impl;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import httpserver.itf.HttpResponse;
+import httpserver.itf.HttpRicmlet;
+import httpserver.itf.HttpRicmletRequest;
+import httpserver.itf.HttpRicmletResponse;
+import httpserver.itf.HttpSession;
+
+public class HttpRicmletRequestImpl extends HttpRicmletRequest{
+
+	public HttpRicmletRequestImpl(HttpServer hs, String method, String ressname, BufferedReader br) throws IOException {
+		super(hs, method, ressname, br);
+	}
+
+	@Override
+	public HttpSession getSession() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getArg(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getCookie(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void process(HttpResponse resp) throws Exception {
+		if (!m_method.equals("GET")) {	//we only handle GET
+			System.out.println("This is not a GET method");
+		} else {
+			String m_class = null;
+			if (!m_ressname.contains("?")) {	//if there are no arguments
+				m_class = (m_ressname.substring(10)).replace("/", "."); 
+			}
+			try {
+				HttpRicmlet m_ricmlet = m_hs.getInstance(m_ressname);
+				m_ricmlet.doGet(this, (HttpRicmletResponse) resp);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				resp.setReplyError(404, "Ricmlet not found");
+			}
+		}
+	
+	}
+}

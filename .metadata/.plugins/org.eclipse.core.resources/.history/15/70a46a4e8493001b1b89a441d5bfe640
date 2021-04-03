@@ -1,0 +1,47 @@
+package httpserver.itf.impl;
+
+import java.io.File;
+import java.io.IOException;
+
+
+import httpserver.itf.HttpRequest;
+import httpserver.itf.HttpResponse;
+
+public class HttpStaticRequest extends HttpRequest {
+	static final String DEFAULT_FILE = "index.html";
+	
+	public HttpStaticRequest(HttpServer hs, String method, String ressname) throws IOException {
+		super(hs, method, ressname);
+	}
+	
+	public void process(HttpResponse resp) throws Exception {
+		if (!m_method.equals("GET")) {	//we only handle GET
+			System.out.println("This is not a GET method");
+		} else {	//for functionning requests
+			//looking for a file corresponding to the requested page
+			File m_filerequest = new File(m_hs.getFolder() + m_ressname);
+			if(!m_filerequest.isFile()) {	//if the file is not found
+				resp.setReplyError(404, "File not found");
+			} else {	//we have found the file, we can now handle the request
+				//Let's handle the header first
+				
+				
+				
+				//Let's handle the body now
+			}
+			
+			
+		}
+
+	}
+
+	
+	
+	/*HTTP/1.0 404 File not found */
+	
+	/*HTTP/1.1 200 OK
+	Date: …
+	Server: Ricm4HttpServer
+	Content-length: 45876
+	Content-type: text/html*/
+}

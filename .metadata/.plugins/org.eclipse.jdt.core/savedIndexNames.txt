@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+/home/nubudi/Desktop/S8/AR/TP/Projet/.metadata/.plugins/org.eclipse.jdt.core
+1228087404.index
+646308851.index

@@ -1,0 +1,7 @@
+package httpserver.itf.impl;
+
+import httpserver.itf.HttpRicmletRequest;
+
+public class HttpRicmletRequestImpl extends HttpRicmletRequest{
+
+}

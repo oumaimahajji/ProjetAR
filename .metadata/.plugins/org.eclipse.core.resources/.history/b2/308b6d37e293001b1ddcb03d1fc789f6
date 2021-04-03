@@ -1,0 +1,15 @@
+package httpserver.itf.impl;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+
+import httpserver.itf.HttpRicmletRequest;
+
+public class HttpRicmletRequestImpl extends HttpRicmletRequest{
+
+	public HttpRicmletRequestImpl(HttpServer hs, String method, String ressname, BufferedReader br) throws IOException {
+		super(hs, method, ressname, br);
+		// TODO Auto-generated constructor stub
+	}
+
+}

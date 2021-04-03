@@ -1,0 +1,45 @@
+package httpserver.itf.impl;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.HashMap;
+
+import httpserver.itf.HttpResponse;
+import httpserver.itf.HttpRicmlet;
+import httpserver.itf.HttpRicmletRequest;
+import httpserver.itf.HttpSession;
+
+public class HttpRicmletRequestImpl extends HttpRicmletRequest{
+
+	HashMap<String, HttpRicmlet> m_ricmlets;
+
+	public HttpRicmletRequestImpl(HttpServer hs, String method, String ressname, BufferedReader br) throws IOException {
+		super(hs, method, ressname, br);
+		m_ricmlets = new HashMap<String, HttpRicmlet>();
+	}
+
+	@Override
+	public HttpSession getSession() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getArg(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getCookie(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void process(HttpResponse resp) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
